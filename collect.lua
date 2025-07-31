@@ -1,29 +1,90 @@
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
+local hrp = character:WaitForChild("HumanoidRootPart")
 
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-230.671, 7.05, 90.943)) -- 100k Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-227.553, 4.4, 73.266)) -- 10k Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-228.612, 5.5, 79.273)) -- 25k Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-229.637, 6.4, 85.084)) -- 50k Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-375.675, -98.9, -1.7)) -- Abstract Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-111.725, -177.562, 2.5)) -- Angel Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-62.645, 5.7, 248.917)) -- Bacon Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-291.673, -91.946, -122.969)) -- Bear Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-440.736, -77.6, 92.696)) -- Bee Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-322.75, -169.093, 246.85) -- Bloxy Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-341.024, -107.585, 257.893)) -- Book Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-187.986, 4, 199.539)) -- Cactus Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-315.113, -282.282, 284.044)) -- Carpet Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-153.697, -144.4, 61.145)) -- Cheese Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-346.892, 117.824, 20.741)) -- Cloud Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-291.125, -291.493, 198.7)) -- Coal Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-297.992, 16.662, 177.91)) -- Coconut Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-356.82, -25.8, 284.963)) -- Coral Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-214.429, -190.141, 262.192)) -- Dapper Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-284.767, -158.2, -234.004)) -- Demon Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-313.286, -191.9, -78.404)) -- Detective Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-373.296, 5.2, 35.194)) -- Dirt Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-264.462, -286.784, 296.417)) -- Domino Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-312.177, -274.684, 348.183)) -- Domo Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-88.095, -149.236, 363.856)) -- Doomspire Florb
-character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Vector3.new(-303.944, -199.55, 443.719)) -- Driving Florb
+local florbs = {
+    {name = "100k Florb", pos = Vector3.new(-230.671, 7.05, 90.943)},
+    {name = "10k Florb", pos = Vector3.new(-227.553, 4.4, 73.266)},
+    {name = "25k Florb", pos = Vector3.new(-228.612, 5.5, 79.273)},
+    {name = "50k Florb", pos = Vector3.new(-229.637, 6.4, 85.084)},
+    {name = "Abstract Florb", pos = Vector3.new(-375.675, -98.9, -1.7)},
+    {name = "Angel Florb", pos = Vector3.new(-111.725, -177.562, 2.5)},
+    {name = "Bacon Florb", pos = Vector3.new(-62.645, 5.7, 248.917)},
+    {name = "Bear Florb", pos = Vector3.new(-291.673, -91.946, -122.969)},
+    {name = "Bee Florb", pos = Vector3.new(-440.736, -77.6, 92.696)},
+    {name = "Bloxy Florb", pos = Vector3.new(-322.75, -169.093, 246.85)},
+    {name = "Book Florb", pos = Vector3.new(-341.024, -107.585, 257.893)},
+    {name = "Cactus Florb", pos = Vector3.new(-187.986, 4, 199.539)},
+    {name = "Carpet Florb", pos = Vector3.new(-315.113, -282.282, 284.044)},
+    {name = "Cheese Florb", pos = Vector3.new(-153.697, -144.4, 61.145)},
+    {name = "Cloud Florb", pos = Vector3.new(-346.892, 117.824, 20.741)},
+    {name = "Coal Florb", pos = Vector3.new(-291.125, -291.493, 198.7)},
+    {name = "Coconut Florb", pos = Vector3.new(-297.992, 16.662, 177.91)},
+    {name = "Coral Florb", pos = Vector3.new(-356.82, -25.8, 284.963)},
+    {name = "Dapper Florb", pos = Vector3.new(-214.429, -190.141, 262.192)},
+    {name = "Demon Florb", pos = Vector3.new(-284.767, -158.2, -234.004)},
+    {name = "Detective Florb", pos = Vector3.new(-313.286, -191.9, -78.404)},
+    {name = "Dirt Florb", pos = Vector3.new(-373.296, 5.2, 35.194)},
+    {name = "Domino Florb", pos = Vector3.new(-264.462, -286.784, 296.417)},
+    {name = "Domo Florb", pos = Vector3.new(-312.177, -274.684, 348.183)},
+    {name = "Doomspire Florb", pos = Vector3.new(-88.095, -149.236, 363.856)},
+    {name = "Driving Florb", pos = Vector3.new(-303.944, -199.55, 443.719)},
+    {name = "Evil Florb", pos = Vector3.new(-263.702, -160.6, -210.881)},
+    {name = "Fancy Fish Florb", pos = Vector3.new(-189.246, -21, 62.468)},
+    {name = "Fish Florb", pos = Vector3.new(-192.62, -10.7, -0.882)},
+    {name = "Flipped Florb", pos = Vector3.new(-273.92, -16.8, 201.618)},
+    {name = "Florb", pos = Vector3.new(-253.77, 7.2, 62.245)},
+    {name = "Florbey 100", pos = Vector3.new(-167.533, -316.893, 138.032)},
+    {name = "Flower Florb", pos = Vector3.new(-96.843, -76.761, -83.271)},
+    {name = "Frog Florb", pos = Vector3.new(-176.527, 3.3, 7.551)},
+    {name = "Geode Florb", pos = Vector3.new(-394.163, 9, 65.926)},
+    {name = "Giant Florb", pos = Vector3.new(-273.962, -275.984, 378.703)},
+    {name = "Glitched Florb", pos = Vector3.new(-247.97, -110.906, 158.709)},
+    {name = "Graf Florb", pos = Vector3.new(-347.525, -220.5, 79.5)},
+    {name = "Grass Florb", pos = Vector3.new(-288.486, 2, 107.052)},
+    {name = "Hacker Florb", pos = Vector3.new(-329.409, -291.252, 231.561)},
+    {name = "Honey Florb", pos = Vector3.new(-397.836, -160.6, 107.496)},
+    {name = "Hungry Florb", pos = Vector3.new(-152.138, 8, 75.499)},
+    {name = "King Florb", pos = Vector3.new(-150.9, -93.2, -27.225)},
+    {name = "Lumberjack Florb", pos = Vector3.new(-263.845, 4.1, -0.307)},
+    {name = "Mega Troll Florb", pos = Vector3.new(-180.77, -95.406, 228.809)},
+    {name = "Milk Florb", pos = Vector3.new(-219.825, -294.484, 432.9)},
+    {name = "Minesweeper Florb", pos = Vector3.new(-412.161, -71.7, -6.848)},
+    {name = "Mouse Florb", pos = Vector3.new(-167.725, -144.1, 40.683)},
+    {name = "Mummy Florb", pos = Vector3.new(-213.169, -48.783, 4.069)},
+    {name = "Musical Florb", pos = Vector3.new(-142.44, 12.5, 102.136)},
+    {name = "Nerd Florb", pos = Vector3.new(-286.28, -96.469, 310.237)},
+    {name = "Ninja Florb", pos = Vector3.new(-157.18, 73, -59.841)},
+    {name = "Painter Florb", pos = Vector3.new(-309.834, -289.306, 441.558)},
+    {name = "Parrot Florb", pos = Vector3.new(-216.431, 21.204, -7.684)},
+    {name = "Pharaoh Florb", pos = Vector3.new(-335.675, -46.9, -11.9)},
+    {name = "Pirate Florb", pos = Vector3.new(-228.62, -0.4, 271.818)},
+    {name = "Pizza Florb", pos = Vector3.new(-368.724, -265.35, 320.98)},
+    {name = "Pufferfish Florb", pos = Vector3.new(-212.579, -24.307, 299.645)},
+    {name = "Rainbow Florb", pos = Vector3.new(-340.232, -182.3, 79.331)},
+    {name = "Realistic Florb", pos = Vector3.new(-339.462, -224.8, -100.104)},
+    {name = "Sad Florb", pos = Vector3.new(-267.143, 5.1, -41.713)},
+    {name = "Sand Florb", pos = Vector3.new(-172.745, -28, 286.863)},
+    {name = "Sandbrick Florb", pos = Vector3.new(-148.863, -113, 54.886)},
+    {name = "Scared Florb", pos = Vector3.new(-380.977, 124.5, 175.239)},
+    {name = "Scary Florb", pos = Vector3.new(-147.661, -224, -88.704)},
+    {name = "Scientist Florb", pos = Vector3.new(-364.345, -289.9, 249.917)},
+    {name = "Shark Florb", pos = Vector3.new(-302.988, -2.3, 290.313)},
+    {name = "Sitting Florb", pos = Vector3.new(-375.329, -257.535, 443.399)},
+    {name = "Sleeping Florb", pos = Vector3.new(-198.049, 5.828, 89.964)},
+    {name = "Spider Florb", pos = Vector3.new(-309.736, -46.832, 118.324)},
+    {name = "Sponge Florb", pos = Vector3.new(-209.835, -22.648, 188.548)},
+    {name = "Square Florb", pos = Vector3.new(-216.656, 4.036, -53.219)},
+    {name = "Tiny Florb", pos = Vector3.new(-277.796, 7.213, -1.681)},
+    {name = "Triple Florb", pos = Vector3.new(-382.768, 32.801, 102.764)},
+    {name = "Troll Florb", pos = Vector3.new(-267.67, -102.406, 108.913)},
+    {name = "Water Florb", pos = Vector3.new(-343.086, 2.718, 49.394)},
+    {name = "Wood Florb", pos = Vector3.new(-386.872, 21.8, 17.998)},
+}
+
+task.spawn(function()
+    for _, florb in ipairs(florbs) do
+        hrp.CFrame = CFrame.new(florb.pos)
+        task.wait(1)
+    end
+end)
