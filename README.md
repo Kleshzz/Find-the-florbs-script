@@ -1,4 +1,4 @@
-# 🧩 Find the Florbs Script
+# 🐱 Find the Florbs Script
 
 ## 📜 Loadstring
 
