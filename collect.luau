@@ -85,6 +85,6 @@ local florbs = {
 task.spawn(function()
     for _, florb in ipairs(florbs) do
         hrp.CFrame = CFrame.new(florb.pos)
-        task.wait(1)
+        task.wait(2)
     end
 end)
