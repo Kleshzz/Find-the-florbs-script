@@ -3,7 +3,7 @@
 ## 📜 Loadstring
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Kleshzz/Find-the-florbs-script/main/collect.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kleshzz/Find-the-florbs-script/main/collect.luau"))()
 ```
 
 ## Game Link
